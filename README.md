@@ -1,5 +1,6 @@
 # NodeJS Rate Limit with Redis
 
+Screenshot:
 ![screenshot](screenshot.png)
 
 ## Setup
