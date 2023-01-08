@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rate Limiter</title>
+  </head>
+  <body>
+    <h1>NodeJS Rate Limiting with Redis</h1>
+    <button id="api">Hit API</button>
+    <pre id="output"></pre>
+
+    <script>
+      const api = document.getElementById("api");
+      api.addEventListener("click", () => hitApi());
+
+      async function hitApi() {
+        const res = await fetch(`/api`, { method: "POST" });
+        const resJson = await res.json();
+        const currTime = new Date().toLocaleString().split(" ")[1];
+        output.innerText += `\n${currTime} | Status: ${res.status} | ${resJson.message}`;
+      }
+    </script>
+  </body>
+</html>
