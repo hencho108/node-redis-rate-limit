@@ -17,16 +17,20 @@ app.get("/", (req, res) => {
 app.post("/api", async (req, res) => {
   const ip = getIP(req);
 
-  try {
-    await rateLimiterRedis.consume(ip);
-    return res.status(200).json({
-      message: `Call made from IP: ${ip}`,
-    });
-  } catch (rejRes) {
-    return res.status(429).json({
-      message: `Too many requests for IP: ${ip}`,
-    });
-  }
+  return res.status(200).json({
+    message: `Call made from IP: ${ip}`,
+  });
+
+  // try {
+  //   await rateLimiterRedis.consume(ip);
+  //   return res.status(200).json({
+  //     message: `Call made from IP: ${ip}`,
+  //   });
+  // } catch (rejRes) {
+  //   return res.status(429).json({
+  //     message: `Too many requests for IP: ${ip}`,
+  //   });
+  // }
 });
 
 app.listen(process.env.port || 3000);
